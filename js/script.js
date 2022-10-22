@@ -75,7 +75,7 @@ const textItem = document.getElementsByClassName("text-container");
 textItem[0].classList.remove("hidden");
 
 const smallImgItems = document.getElementsByClassName("item-img-small");
-console.log(smallImgItems);
+console.log(smallImgItems, "itemimg");
 smallImgItems[0].classList.add("opacity")
 
 const arrowRight = document.querySelector(".arrow-right");
@@ -133,3 +133,24 @@ leftArrow.addEventListener("click", function(){
         smallImgItems[imgPosition].classList.add("opacity");
     }
 })
+
+
+const clickImage = document.querySelector(".item-img-small");
+console.log(clickImage);
+for (let i = 0; i < images.length; i++) {
+    const thisThumb = smallImgItems[i];
+    thisThumb.addEventListener("click", function() {
+        // Cancellare active da slider item e dal thumb
+        imgItems[imgPosition].classList.remove("active");
+        smallImgItems[imgPosition].classList.remove("opacity");
+        textItem[imgPosition].classList.add("hidden");
+
+        // Aggiornare la posizione attuale
+        imgPosition = i;
+
+        // Aggiungere active alla nuova posizione dell'immagine e del thumb
+        imgItems[imgPosition].classList.add("active");
+        smallImgItems[imgPosition].classList.add("opacity");
+        textItem[imgPosition].classList.remove("hidden");
+    });
+}
