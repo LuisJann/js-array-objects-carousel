@@ -48,10 +48,11 @@ const images = [
 const carousel = document.querySelector(".img-container");
 const smallCarousel = document.querySelector(".img-small-container");
 
-
+//estraiamo e stampiamo gli elemnti dell'array 
 images.forEach((item) =>{
     thisItem = item;
     console.log("item",thisItem.image, thisItem.title, thisItem.text);
+//stampiamo le immagini principali
     const element = `
              <img class="item-img-large" src="images/${thisItem.image}" alt="">
                 <div class="text-container text hidden">
@@ -59,7 +60,7 @@ images.forEach((item) =>{
                     <p>${thisItem.text}</p>
                 </div>`
     carousel.innerHTML += element;   
-    
+//stampiamo le miniature
     const smallElement = `
                 <div class="item">
                     <img class="item-img-small" src="images/${thisItem.image}" alt="">
@@ -78,6 +79,7 @@ const smallImgItems = document.getElementsByClassName("item-img-small");
 console.log(smallImgItems, "itemimg");
 smallImgItems[0].classList.add("opacity")
 
+//avanziamo di una immagine premendo la freccia "arrow-right" aggiornando anche miniatura e testo immagine
 const arrowRight = document.querySelector(".arrow-right");
 console.log(arrowRight);
 arrowRight.addEventListener("click", function() {
@@ -109,6 +111,7 @@ arrowRight.addEventListener("click", function() {
     }
 })
 
+//arretriamo di una immagine premendo la freccia "arrow-left" aggiornando anche miniatura e testo immagine
 const leftArrow = document.querySelector(".arrow-left");
 leftArrow.addEventListener("click", function(){
     if(imgPosition > 0){
@@ -134,7 +137,7 @@ leftArrow.addEventListener("click", function(){
     }
 })
 
-
+//aggiungamo la possibilità di saltare da una immagine all'altra cliccando direttamente nella miniatura 
 const clickImage = document.querySelector(".item-img-small");
 console.log(clickImage);
 for (let i = 0; i < images.length; i++) {
@@ -156,7 +159,7 @@ for (let i = 0; i < images.length; i++) {
 }
 
 
-
+// aggiungiamo un bottone che scorre ogmi 2 secondi in automatico dalla prima all'ultima immagine in loop 
 const timerBtnStart = document.querySelector(".btn-timer-start");
 timerBtnStart.addEventListener("click", function(){
     const myTimer = setInterval(() => {
@@ -194,6 +197,7 @@ timerBtnStart.addEventListener("click", function(){
     });
 });
 
+// aggiungiamo un bottone che scorre ogmi 2 secondi in automatico dall'ultima alla prima immagine in loop 
 const timerBtnReverse = document.querySelector(".btn-timer-reverse");
 console.log(timerBtnReverse);
 timerBtnReverse.addEventListener("click", function(){
