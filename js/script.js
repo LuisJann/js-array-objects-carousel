@@ -154,3 +154,40 @@ for (let i = 0; i < images.length; i++) {
         textItem[imgPosition].classList.remove("hidden");
     });
 }
+function automaticLoop(){
+    
+}
+
+
+
+const timerBtn = document.querySelector(".btn-timer");
+timerBtn.addEventListener("click", function(){
+    const myTimer = setInterval(() => {
+        if(imgPosition < images.length-1){
+            imgItems[imgPosition].classList.remove("active");
+            console.log(imgItems[imgPosition],"prima", imgPosition);
+            textItem[imgPosition].classList.add("hidden");
+            console.log(textItem[imgPosition], "prima");
+            smallImgItems[imgPosition].classList.remove("opacity");
+    
+            imgPosition++;
+    
+    
+            imgItems[imgPosition].classList.add("active");
+            console.log(imgItems[imgPosition],"dopo", imgPosition);
+            textItem[imgPosition].classList.remove("hidden");
+            console.log(textItem[imgPosition], "dopo",imgPosition);
+            smallImgItems[imgPosition].classList.add("opacity");
+        } else if (imgPosition = images.length-1){
+            imgItems[imgPosition].classList.remove("active");
+            textItem[imgPosition].classList.add("hidden");
+            smallImgItems[imgPosition].classList.remove("opacity");
+    
+            imgPosition = 0;
+    
+            imgItems[imgPosition].classList.add("active");
+            textItem[imgPosition].classList.remove("hidden");
+            smallImgItems[imgPosition].classList.add("opacity");
+        }
+    }, 3000);
+})
