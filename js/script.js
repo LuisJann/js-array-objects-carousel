@@ -154,14 +154,11 @@ for (let i = 0; i < images.length; i++) {
         textItem[imgPosition].classList.remove("hidden");
     });
 }
-function automaticLoop(){
-    
-}
 
 
 
-const timerBtn = document.querySelector(".btn-timer");
-timerBtn.addEventListener("click", function(){
+const timerBtnStart = document.querySelector(".btn-timer-start");
+timerBtnStart.addEventListener("click", function(){
     const myTimer = setInterval(() => {
         if(imgPosition < images.length-1){
             imgItems[imgPosition].classList.remove("active");
@@ -189,5 +186,43 @@ timerBtn.addEventListener("click", function(){
             textItem[imgPosition].classList.remove("hidden");
             smallImgItems[imgPosition].classList.add("opacity");
         }
-    }, 3000);
-})
+    }, 2000);
+    const timerBtnStop = document.querySelector(".btn-timer-stop");
+    console.log(timerBtnStop);
+    timerBtnStop.addEventListener("click", function(){
+        clearInterval(myTimer);
+    });
+});
+
+const timerBtnReverse = document.querySelector(".btn-timer-reverse");
+console.log(timerBtnReverse);
+timerBtnReverse.addEventListener("click", function(){
+    const myTimerReverse = setInterval(() => {
+        if(imgPosition > 0){
+            imgItems[imgPosition].classList.remove("active");
+            textItem[imgPosition].classList.add("hidden");
+            smallImgItems[imgPosition].classList.remove("opacity");
+    
+            imgPosition --;
+    
+            imgItems[imgPosition].classList.add("active");
+            textItem[imgPosition].classList.remove("hidden");
+            smallImgItems[imgPosition].classList.add("opacity");
+        } else if (imgPosition <= 0){
+            imgItems[imgPosition].classList.remove("active");
+            textItem[imgPosition].classList.add("hidden");
+            smallImgItems[imgPosition].classList.remove("opacity");
+    
+            imgPosition = images.length-1;
+    
+            imgItems[imgPosition].classList.add("active");
+            textItem[imgPosition].classList.remove("hidden");
+            smallImgItems[imgPosition].classList.add("opacity");
+        }
+    }, 2000);
+    const timerBtnStopReverse = document.querySelector(".btn-timer-stop");
+    console.log(timerBtnStopReverse);
+    timerBtnStopReverse.addEventListener("click", function(){
+        clearInterval(myTimerReverse);
+    });
+});
