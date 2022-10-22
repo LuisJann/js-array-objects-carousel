@@ -58,14 +58,15 @@ img{
 .arrow-right,
 .arrow-left{
     position: absolute;
-    top: 92%;
+    top: 50%;
     transform: translateY(-50%);
 
     width: 40px;
     height: 40px;
 
     font-size: 24px;
-    background-color: rgba(240, 240, 240, 0.5);
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
     text-align: center;
     line-height: 40px;
     border-radius: 50%;
@@ -90,6 +91,9 @@ img{
 
 .active{
     display: block;
+}
+
+.opacity{
     opacity: 1;
 }
 
@@ -100,5 +104,8 @@ img{
 
     color: white;
     text-align: end;
+}
 
+.hidden{
+    display: none;
 }

@@ -43,3 +43,93 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
+
+const carousel = document.querySelector(".img-container");
+const smallCarousel = document.querySelector(".img-small-container");
+
+
+images.forEach((item) =>{
+    thisItem = item;
+    console.log("item",thisItem.image, thisItem.title, thisItem.text);
+    const element = `
+             <img class="item-img-large" src="images/${thisItem.image}" alt="">
+                <div class="text-container text hidden">
+                    <h2>${thisItem.title}</h2>
+                    <p>${thisItem.text}</p>
+                </div>`
+    carousel.innerHTML += element;   
+    
+    const smallElement = `
+                <div class="item">
+                    <img class="item-img-small" src="images/${thisItem.image}" alt="">
+                </div> `
+    smallCarousel.innerHTML += smallElement;
+}); 
+
+const imgItems = document.getElementsByClassName("item-img-large");
+let imgPosition = 0;
+imgItems[0].classList.add("active");
+
+const textItem = document.getElementsByClassName("text-container");
+textItem[0].classList.remove("hidden");
+
+const smallImgItems = document.getElementsByClassName("item-img-small");
+console.log(smallImgItems);
+smallImgItems[0].classList.add("opacity")
+
+const arrowRight = document.querySelector(".arrow-right");
+console.log(arrowRight);
+arrowRight.addEventListener("click", function() {
+    if(imgPosition < images.length-1){
+        imgItems[imgPosition].classList.remove("active");
+        console.log(imgItems[imgPosition],"prima", imgPosition);
+        textItem[imgPosition].classList.add("hidden");
+        console.log(textItem[imgPosition], "prima");
+        smallImgItems[imgPosition].classList.remove("opacity");
+
+        imgPosition++;
+
+
+        imgItems[imgPosition].classList.add("active");
+        console.log(imgItems[imgPosition],"dopo", imgPosition);
+        textItem[imgPosition].classList.remove("hidden");
+        console.log(textItem[imgPosition], "dopo",imgPosition);
+        smallImgItems[imgPosition].classList.add("opacity");
+    } else if (imgPosition = images.length-1){
+        imgItems[imgPosition].classList.remove("active");
+        textItem[imgPosition].classList.add("hidden");
+        smallImgItems[imgPosition].classList.remove("opacity");
+
+        imgPosition = 0;
+
+        imgItems[imgPosition].classList.add("active");
+        textItem[imgPosition].classList.remove("hidden");
+        smallImgItems[imgPosition].classList.add("opacity");
+    }
+})
+
+const leftArrow = document.querySelector(".arrow-left");
+leftArrow.addEventListener("click", function(){
+    if(imgPosition > 0){
+        imgItems[imgPosition].classList.remove("active");
+        textItem[imgPosition].classList.add("hidden");
+        smallImgItems[imgPosition].classList.remove("opacity");
+
+        imgPosition --;
+
+        imgItems[imgPosition].classList.add("active");
+        textItem[imgPosition].classList.remove("hidden");
+        smallImgItems[imgPosition].classList.add("opacity");
+    } else if (imgPosition <= 0){
+        imgItems[imgPosition].classList.remove("active");
+        textItem[imgPosition].classList.add("hidden");
+        smallImgItems[imgPosition].classList.remove("opacity");
+
+        imgPosition = images.length-1;
+
+        imgItems[imgPosition].classList.add("active");
+        textItem[imgPosition].classList.remove("hidden");
+        smallImgItems[imgPosition].classList.add("opacity");
+    }
+})
